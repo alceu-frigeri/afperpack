@@ -54,6 +54,9 @@ The Current Maintainer of this work is Alceu Frigeri
 
 * afperpack.sty
     - the package itself
+    
+* CircuitsI.sty / CircuitsII.sty / CircuitsMisc.sty / ElectronicsI.sty 
+    - tikzquests repositories
 
 * README.md  (this file)
     - quick introduction
