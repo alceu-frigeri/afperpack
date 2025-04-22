@@ -1,0 +1,185 @@
+%%%==============================================================================
+%% Copyright 2025-present by Alceu Frigeri
+%%
+%% This work may be distributed and/or modified under the conditions of
+%%
+%% * The [LaTeX Project Public License](http://www.latex-project.org/lppl.txt),
+%%   version 1.3c (or later), and/or
+%% * The [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.html),
+%%   version 3 (or later)
+%%
+%% This work has the LPPL maintenance status *maintained*.
+%%
+%% The Current Maintainer of this work is Alceu Frigeri
+%%
+%% This is version {0.1} {2025/05/01}
+%%
+%% The list of files that compose this work can be found in the README.md file at
+%% https://ctan.org/pkg/afperpack
+%%
+%%%==============================================================================
+\NeedsTeXFormat{LaTeX2e}[2022/06/01]
+
+\ProvidesPackage{CircuitsII}%
+        [Circuits II repositories. Part of afperpack]
+
+
+\defNewRepository{C.II}
+\defNewRepository{C.II/1a}
+\defNewRepository{C.II/2a}
+\defNewRepository{C.II/ext}
+\SelectRepository{default}
+
+
+\defQuestion[C.II/1a]{Q1}{%
+	\draw (0,0)  	\ncoord(ref) to[V,invert,l=\Vr,i=\Ir] ++(0,4) -- ++(4.5,0) \ncoord(R) node[circ] {}
+	(ref) to [V,invert,l=\Vs] ++(3.5,-2) -- ++(1,0) \ncoord(S) node[circ] {}
+	(ref) to [V,invert,l=\Vt] ++(-3.5,-2) -- ++(0,-1) -- ++(8,0) \ncoord(T) node[circ] {}
+	(ref) -- ++(0.5,0.5) -- ++(4,0) \ncoord(N) node[circ] {}
+	(N) to [R,l=\Ra] ++(0,1.75) to [L,l=\La] ++(0,1.75)
+	(N) to [R,l=\Ra] ++(0,-1.25) to [L,l=\La] ++(0,-1.25)
+	(N) -- ++(1.5,0) node[circ]{} to [R,l=\Ra] ++(0,-1.75) to [L,l=\La] ++(0,-1.75)
+	(ref) node[circ]{}
+	(R) -- ++(2.5,0) \ncoord(R1)
+	(S) -- ++(2.5,0)
+	(T) -- ++(2.5,0) \ncoord(T1)
+	(N) -- ++(2.5,0) \ncoord(N1) ++(0.5,0) node{$\frac{\Delta : Y}{1:2 bob}$}
+	(R1) -- ++(0,0.5) -- (T1) -- ++(0,-0.5) -- ++(1.5,0) -- ++(0,8) -- ++(-1.5,0)
+	(R1) ++(1.5,0) -- ++(1.5,0) \ncoord(R2) node[circ]{} to [R,l=\Rb] ++(0,-1.5) to [C,l=\Cb] ++(0,-1.5) \ncoord(X) -- ++(-1.5,0)
+	(X) node[circ]{} to [R,l=\Rb] ++(0,-1.5) to [C,l=\Cb] ++(0,-1.5) node[circ]{} \ncoord(Y)
+	(R2) -- ++(2,0) to [R,l=\Rb] ++(0,-3) to [C,l=\Cb] ++(0,-3) \ncoord(Z) -- ++(-3.5,0)
+	
+	;	
+	 
+}
+\defQuestionAlias[C.II/1a]{QCA}{Q1}
+
+\defQuestion[C.II/1a]{Q1b}{%
+	\draw (0,0)  	\ncoord(ref) to[V,invert,l=\Vr,i>=\Ir] ++(0,4) -- ++(4.5,0) \ncoord(R) node[circ] {}
+	(ref) to [V,invert,l=\Vs] ++(3.5,-2) -- ++(1,0) \ncoord(S) node[circ] {}
+	(ref) to [V,invert,l=\Vt] ++(-3.5,-2) -- ++(0,-1) -- ++(8,0) \ncoord(T) node[circ] {}
+	(ref) -- ++(0.5,0.5) -- ++(4,0) \ncoord(N) node[circ] {}
+	(N) to [R,l=\Ra] ++(0,1.75) to [L,l=\La] ++(0,1.75)
+	(N) to [R,l=\Ra] ++(0,-1.25) to [L,l=\La] ++(0,-1.25)
+	(N) -- ++(1.5,0) node[circ]{} to [R,l=\Ra] ++(0,-1.75) to [L,l=\La] ++(0,-1.75)
+	(ref) node[circ]{}
+	(R) -- ++(2.5,0) \ncoord(R1)
+	(S) -- ++(2.5,0)
+	(T) -- ++(2.5,0) \ncoord(T1)
+	(N) -- ++(2.5,0) \ncoord(N1) ++(0.5,0) node{\Xa}
+	(R1) -- ++(0,0.5) -- (T1) -- ++(0,-0.5) -- ++(1.5,0) -- ++(0,8) -- ++(-1.5,0)
+	(R1) ++(1.5,0) -- ++(1.5,0) \ncoord(R2) node[circ]{} to [R,l=\Rb] ++(0,-1.5) to [L,l=\Lb] ++(0,-1.5) \ncoord(X) -- ++(-1.5,0)
+	(X) node[circ]{} to [R,l=\Rb] ++(0,-1.5) to [L,l=\Lb] ++(0,-1.5) node[circ]{} \ncoord(Y)
+	(R2) -- ++(2,0) to [R,l=\Rb] ++(0,-3) to [L,l=\Lb] ++(0,-3) \ncoord(Z) -- ++(-3.5,0)
+	
+	;	
+	 
+}
+\defQuestionAlias[C.II/1a]{QCAb}{Q1b}
+
+
+\defQuestion[C.II/1a]{Q2}{%
+	\draw (0,0)  	 \ncoord(ref) to[V,invert,l=\Vi] ++(0,4) \ncoord(A)
+	(A) to[R,l=\Ra] ++(2,0) \ncoord(B)
+	(A) -- ++(0,1.5) to[C,l=\Ca] ++(2,0) -- (B)
+	(B) to[C,l_=\Cb] ++(0,-2) \ncoord(C) -- ++(0,-2) -- (ref)
+	(B) -- ++(2,0) node[transformer,anchor=A1] (T){}
+	(T.base) node{1:2}
+	(T.A2) -| (C)
+	(T.B1) to[R,l=\Rb] ++(3,0) \ncoord(D)
+	(D) to[R,l=\Rc] ++(0,-2) \ncoord(E)
+	(E) to[C,l=\Cc] ++(0,-2) \ncoord(F) -| (T.B2)
+	(D) -- ++(3,0) to[L,l=\La] ++(0,-2) \ncoord(G)
+	(G) to[R,l=\Rd] ++(0,-2) -- (F)
+	(E) to[V,l=\Vb] (G)
+	(T.A1) to[open,v=$V_x(t)$] (T.A2)
+	;	
+}
+\defQuestionAlias[C.II/1a]{QCB}{Q2}
+
+\defQuestion[C.II/1a]{Q2b}{%
+	\draw (0,0)  	 \ncoord(ref) to[V,invert,l=\Vi] ++(0,4) \ncoord(A)
+	(A) to[R,l=\Ra] ++(2,0) \ncoord(B)
+	(A) -- ++(0,1.5) to[C,l=\Ca] ++(2,0) -- (B)
+	(B) to[C,l_=\Cb] ++(0,-2) \ncoord(C) -- ++(0,-2) -- (ref)
+	(B) -- ++(2,0) node[transformer,anchor=A1] (T){}
+	(T.base) node{1:2}
+	(T.A2) -| (C)
+	(T.B1) to[R,l=\Rb] ++(3,0) \ncoord(D)
+	(D) to[R,l=\Rc] ++(0,-2) \ncoord(E)
+	(E) to[C,l=\Cc] ++(0,-2) \ncoord(F) -| (T.B2)
+	(D) -- ++(3,0) to[L,l=\La] ++(0,-2) \ncoord(G)
+	(G) to[R,l=\Rd] ++(0,-2) -- (F)
+	(E) to[R,l=\Re] (G)
+	(T.A1) to[open,v=$V_x(t)$] (T.A2)
+	;	
+ 
+}
+\defQuestionAlias[C.II/1a]{QCBb}{Q2b}
+
+
+
+\defQuestion[C.II/1a]{Q3}{%
+	\draw (0,0)  	 \ncoord(ref) node[ground]{} to[V,invert,l=\Vi] ++(0,2) \ncoord(A)
+	(A) to[R,l=\Ra] ++(2,0) \ncoord(B)
+	(B) to[L,l=\La] ++(0,-2) -- (ref)
+	(A) -- ++(0,1.5) to[R,l=\Rb] ++(2,0) \ncoord(C)
+	(C) node[op amp,anchor=-](opamp){}
+	(opamp.+) -- (B)
+	(C) -- ++(0,3) to[C,l=\Ca] ++(2,0) \ncoord(D)
+	(D) to[L,l=\Lb] ++(0,-2) node[ground]{}
+	(D) to[L,l=\Lc] ++(2,0) |- (opamp.out)
+	(opamp.out) ++(1.5,0) to[open,v^=\Vo] ++(0,-2) node[ground]{}
+	
+;
+}
+\defQuestionAlias[C.II/1a]{QCC}{Q3}
+
+\defQuestion[C.II/1a]{Q3b}{%
+	\draw (0,0)  	 \ncoord(ref) node[ground]{} to[V,invert,l=\Vi] ++(0,2) \ncoord(A)
+	(A) to[R,l=\Ra] ++(2,0) \ncoord(B)
+	(B) to[L,l=\La] ++(0,-2) -- (ref)
+	(A) -- ++(0,1.5) to[R,l=\Rb] ++(2,0) \ncoord(C)
+	(C) node[op amp,anchor=-](opamp){}
+	(opamp.+) -- (B)
+	(C) -- ++(0,3) to[C,l=\Ca] ++(2,0) \ncoord(D)
+	(D) to[L,l=\Lb] ++(0,-2) node[ground]{}
+	(D) -- ++(2,0) |- (opamp.out)
+	(opamp.out) ++(1.5,0) to[open,v^=\Vo] ++(0,-2) node[ground]{}
+	
+;
+}
+\defQuestionAlias[C.II/1a]{QCCb}{Q3b}
+
+
+\defQuestion[C.II/2a]{Q1}{%
+	\draw (0,0)  	 \ncoord(ref) to[V,invert,l=\Vi] ++(0,2) \ncoord(A)
+	(A) to[R,l=\Ra] ++(4,0) \ncoord(B)
+	(A) -- ++(0,1.5) to[R,l=\Rb] ++(2,0)  to[L,l=\La] ++(2,0) \ncoord(C) -- (B)
+	(B) to[R,l=\Rc] ++(0,-2)
+	(B) to[L,l=\Lb] ++(2,0) \ncoord(X) to[R,l=\Rd] ++(0,-2)
+	(X) ++(2,0) to[R,l=\Re] ++(0,-2)
+	(X) ++(2,0) to[L,l=\Lc] ++(2,0) \ncoord(Y)
+	(Y) to[R,l=\Rf] ++(0,-2) \ncoord(Z) -- (ref)
+	(Z) -- ++(1,0) node[ocirc]{} \ncoord(Z1)
+	(Y) -- ++(1,0) node[ocirc]{} \ncoord(Y1) to[open,v^=\Vo] (Z1)
+	(C) -| (Y)
+;
+}
+\defQuestionAlias[C.II/2a]{QCBc}{Q1}
+
+
+
+\defQuestion[C.II/2a]{Q1d}{%
+	\draw (0,0)  	 \ncoord(ref) to[V,invert,l=\Vi] ++(0,2) \ncoord(A)
+	(A) to[R,l=\Ra] ++(2,0) \ncoord(B)
+	(B) to[R,l_=\Rb] ++(0,-2) to[open,v=\Vx] (B)
+	(B) to[L,l=\Lb] ++(2,0) \ncoord(C) to[C,l=\Ca] ++(0,-2)
+	(C) to[R,l=\Rc] ++(2,0) to[V,l=\Ka\Vx] ++(0,-2) -- (ref)
+	
+;
+}
+\defQuestionAlias[C.II/2a]{QCBd}{Q1d}
+
+
+\endinput

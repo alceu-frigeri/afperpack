@@ -1,0 +1,127 @@
+%%%==============================================================================
+% WinEdt pragmas
+% !Mode:: "TeX:EN"
+% Default Compile engines:
+% !TEX program = pdflatex
+% !PDFTeXify ext =  --enable-etex  --restrict-write18
+% !PDFLaTeX ext  =  --enable-etex  --restrict-write18
+% !BIB program = none
+%%%==============================================================================
+%% Copyright 2025-present by Alceu Frigeri
+%%
+%% This work may be distributed and/or modified under the conditions of
+%%
+%% * The [LaTeX Project Public License](http://www.latex-project.org/lppl.txt),
+%%   version 1.3c (or later), and/or
+%% * The [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.html),
+%%   version 3 (or later)
+%%
+%% This work has the LPPL maintenance status *maintained*.
+%%
+%% The Current Maintainer of this work is Alceu Frigeri
+%%
+%% This is version {0.1} {2025/05/01}
+%%
+%% The list of files that compose this work can be found in the README.md file at
+%% https://ctan.org/pkg/afperpack
+%%
+%%%==============================================================================
+\documentclass[10pt]{article}
+\RequirePackage[verbose,a4paper,marginparwidth=27.5mm,top=2.5cm,bottom=1.5cm,hmargin={40mm,20mm},marginparsep=2.5mm,columnsep=10mm,asymmetric]{geometry}
+\usepackage{codedescribe}
+\RequirePackage[inline]{enumitem}
+\SetEnumitemKey{miditemsep}{parsep=0ex,itemsep=0.4ex}
+
+%%\usepackage[american,siunitx,cuteinductors,smartlabels,arrowmos,EFvoltages,betterproportions]{circuitikz}
+%%\usetikzlibrary{math}
+\usepackage[math,tikz,listings,graphicx,english]{afperpack}
+
+%\usepackage{CircuitsI}
+%\usepackage{CircuitsII}
+%\usepackage{CircuitsMisc}
+%\usepackage{ElectronicsI}
+
+\RequirePackage[hidelinks,hypertexnames=false]{hyperref}
+
+\begin{document}
+\tstitle{
+  author={Alceu Frigeri\footnote{\tsverb{https://github.com/alceu-frigeri/afperpack}}},
+  date={\tsdate},
+  title={The afperpack Package\break Personal settings and preferences \break Version \PkgInfo{afperpack}{version}}
+  }
+  
+
+\begin{typesetabstract}
+This bundle includes  a personal pre-configuration package, which (selectively) loads package sets with the author pre-defined package options, and a few associated packages as ``circuits libraries'' (set's of quests based on \tsobj[pkg]{tikzquests}).
+
+\end{typesetabstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+This is what is left from ``my personal packages''. I started, a few years ago (2022), to untangle the many personal packs/hacks that I was using, documenting them and publishing them at CTAN, and, finally, after almost 3 years (2025), this is what is left: Just an auxiliary package that pre-loads the packages I use the most, and define one single (well two) command(s). So, now, when I share a \LaTeX\ file with a colleague, he/she won't come back asking me how to compile it (because they lack ``my hacks'').
+
+\section{Package Options}
+\begin{describelist}{key}
+  \describe{showframe}{For geometry/format ``debugging''. This will just load the \tsobj[pkg]{showframe} package.}
+  \describe{showlabels}{For geometry/format ``debugging''. This will just load the \tsobj[pkg]{showlabels} package.}
+  \describe{english}{Babel will be loaded with \tsobj[option]{english} option. Otherwise \tsobj[option]{brazilian}. }
+  \describe{beamer}{This will suppress the loading of the \tsobj[pkg]{geometry,titlesec,listings} packages. It doesn't loads \tsobj[pkg]{beamer}.}
+  \describe{xpacks}{The packages \tsobj[pkg]{longtable,xpacks,csquotes,caption,supcaption,url,multirow,bigdelim} will be loaded.}
+  \describe{times}{This will load the \tsobj[pkg]{mathptmx} package (times roman) instead of (default) \tsobj[pkg]{lmodern}.}
+  \describe{noquests}{This will suppress the loading of the \tsobj[pkg]{tikzquests} package.}
+  \describe{tikz}{This will load \tsobj[pkg]{tikz,circuitikz,tikzquads,tikzdotncross,tikzfxgraph} packages.}
+  \describe{graphicx}{This will load the \tsobj[pkg]{graphicx} package.}
+  \describe{math}{This will load the \tsobj[pkg]{
+  amsmath , amsfonts , amssymb , amsthm , mathrsfs , mathtools, empheq , extarrows, steinmetz, mathfixs , siunitx , cases } packages.}
+  \describe{listings}{This will load the \tsobj[pkg]{listings} package. (if \tsobj[option]{beamer} is false)}
+\end{describelist}
+
+
+\section{Commands}
+
+
+\begin{codedescribe}{\cab}
+\begin{codesyntax}%
+\tsmacro{\cab}{options}
+\end{codesyntax}
+This will typesets, in a new page, a typical exam header. \tsobj[marg]{options} is a key=val list of:
+\begin{describelist*}{key}
+  \describe{uni}{University's name. (default: Universidade Federal do Rio Grande do Sul)}
+  \describe{dept}{Department's name. (default: Escola de Engenharia / DELAE)}
+  \describe{class}{Class' name. (default: disciplina)}
+  \describe{classcode}{Class' code. (default: ENGcode)}
+  \describe{exam}{Exam text. (default: Verificação de Aproveitamento)}
+  \describe{sem}{Semester. (default: 202x/Y)}
+  \describe{name label}{Student`s label. (default: Nome)}
+  \describe{id label}{Student`s ID label. (default: Cartão)}
+  \describe{duo label}{Duo labe. (default: Dupla)}
+  \describe{simplegrad}{If true, the grad option box will be used, with a preset text. (default: false)}
+  \describe{duo}{If true then duo label will be added to identification line (default: false)}
+  \describe{nonames}{If true, the identification lines will be suppressed.}
+\end{describelist*}
+\end{codedescribe}
+
+For example:
+\begin{codestore}[af-01]
+  \cab{
+    class={Eletrônica I} , classcode=ENG10044 , 
+    exam = {$1^a$ Verificação} , sem = {2025/1} , simplegrad 
+  }
+\end{codestore}
+\tscode*[emph={class,classcode,exam,sem,simplegrad,uni,dept,name,id,duo,label,nonames}]{af-01}
+
+\begin{codedescribe}{\pgfmathparseFPU}
+  \begin{codesyntax}
+    \tsmacro{\pgfmathparseFPU}{math-expr}
+  \end{codesyntax}
+  This command is defined if, and only if, the \tsobj[option]{tikz} option is used. It will process \tsobj[marg]{math-expr} with \tsobj{\pgfmathparse} whilst the \tsobj[key]{/pgf/fpu} key is active, which greatly extends the \TeX\ number's range. See the \tsobj[pkg]{fpu} library from \tsobj[pkg]{tikz} for more details.
+\end{codedescribe}
+
+\section{Other Packages}
+This bundle includes a few companion ``packages'' : \tsobj[pkg]{CircMisc,CircTheoryI,CircTheoryII,ElectronicI}. Each of these defines sets of circuit-quests (based on \tsobj[pkg]{tikzquests,circuitikz}). It's possible to list all defined circuit-quests using the \tsobj{\QuestionsList} command.
+
+%\QuestionsList
+
+\end{document} 
