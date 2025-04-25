@@ -20,7 +20,7 @@
 %%
 %% The Current Maintainer of this work is Alceu Frigeri
 %%
-%% This is version {0.1} {2025/05/01}
+%% This is version {1.0} {2025/04/25}
 %%
 %% The list of files that compose this work can be found in the README.md file at
 %% https://ctan.org/pkg/afperpack
@@ -32,14 +32,7 @@
 \RequirePackage[inline]{enumitem}
 \SetEnumitemKey{miditemsep}{parsep=0ex,itemsep=0.4ex}
 
-%%\usepackage[american,siunitx,cuteinductors,smartlabels,arrowmos,EFvoltages,betterproportions]{circuitikz}
-%%\usetikzlibrary{math}
 \usepackage[math,tikz,listings,graphicx,english]{afperpack}
-
-%\usepackage{CircuitsI}
-%\usepackage{CircuitsII}
-%\usepackage{CircuitsMisc}
-%\usepackage{ElectronicsI}
 
 \RequirePackage[hidelinks,hypertexnames=false]{hyperref}
 
@@ -52,7 +45,7 @@
   
 
 \begin{typesetabstract}
-This bundle includes  a personal pre-configuration package, which (selectively) loads package sets with the author pre-defined package options, and a few associated packages as ``circuits libraries'' (set's of quests based on \tsobj[pkg]{tikzquests}).
+This bundle includes  a personal pre-configuration package, which (selectively) loads package sets with the author pre-defined package options.
 
 \end{typesetabstract}
 
@@ -63,6 +56,7 @@ This bundle includes  a personal pre-configuration package, which (selectively) 
 This is what is left from ``my personal packages''. I started, a few years ago (2022), to untangle the many personal packs/hacks that I was using, documenting them and publishing them at CTAN, and, finally, after almost 3 years (2025), this is what is left: Just an auxiliary package that pre-loads the packages I use the most, and define one single (well two) command(s). So, now, when I share a \LaTeX\ file with a colleague, he/she won't come back asking me how to compile it (because they lack ``my hacks'').
 
 \section{Package Options}
+
 \begin{describelist}{key}
   \describe{showframe}{For geometry/format ``debugging''. This will just load the \tsobj[pkg]{showframe} package.}
   \describe{showlabels}{For geometry/format ``debugging''. This will just load the \tsobj[pkg]{showlabels} package.}
@@ -78,6 +72,7 @@ This is what is left from ``my personal packages''. I started, a few years ago (
   \describe{listings}{This will load the \tsobj[pkg]{listings} package. (if \tsobj[option]{beamer} is false)}
 \end{describelist}
 
+Note that \tsobj[pkg]{etoolbox,fontenc,inputenc,xcolors,enumerate} will always be loaded. Besides those \tsobj[pkg]{geometry} will (if not already) as well \tsobj[pkg]{titlesec,listings} if \tsobj[option]{beamer} is false.
 
 \section{Commands}
 
@@ -119,9 +114,9 @@ For example:
   This command is defined if, and only if, the \tsobj[option]{tikz} option is used. It will process \tsobj[marg]{math-expr} with \tsobj{\pgfmathparse} whilst the \tsobj[key]{/pgf/fpu} key is active, which greatly extends the \TeX\ number's range. See the \tsobj[pkg]{fpu} library from \tsobj[pkg]{tikz} for more details.
 \end{codedescribe}
 
-\section{Other Packages}
-This bundle includes a few companion ``packages'' : \tsobj[pkg]{CircMisc,CircTheoryI,CircTheoryII,ElectronicI}. Each of these defines sets of circuit-quests (based on \tsobj[pkg]{tikzquests,circuitikz}). It's possible to list all defined circuit-quests using the \tsobj{\QuestionsList} command.
+%\section{Other Packages}
+%This bundle includes a few companion ``packages'' : \tsobj[pkg]{CircMisc,CircTheoryI,CircTheoryII,ElectronicI}. Each of these defines sets of circuit-quests (based on \tsobj[pkg]{tikzquests,circuitikz}). It's possible to list all defined circuit-quests using the \tsobj{\QuestionsList} command.
+%
 
-%\QuestionsList
 
 \end{document} 

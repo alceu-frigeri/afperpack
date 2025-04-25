@@ -1,0 +1,98 @@
+%%%==============================================================================
+% WinEdt pragmas
+% !Mode:: "TeX:EN"
+% Default Compile engines:
+% !TEX program = pdflatex
+% !PDFTeXify ext =  --enable-etex  --restrict-write18
+% !PDFLaTeX ext  =  --enable-etex  --restrict-write18
+% !BIB program = none
+%%%==============================================================================
+%% Copyright 2025-present by Alceu Frigeri
+%%
+%% This work may be distributed and/or modified under the conditions of
+%%
+%% * The [LaTeX Project Public License](http://www.latex-project.org/lppl.txt),
+%%   version 1.3c (or later), and/or
+%% * The [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.html),
+%%   version 3 (or later)
+%%
+%% This work has the LPPL maintenance status *maintained*.
+%%
+%% The Current Maintainer of this work is Alceu Frigeri
+%%
+%% This is version {1.0} {2025/04/25}
+%%
+%% The list of files that compose this work can be found in the README.md file at
+%% https://ctan.org/pkg/afperpack
+%%
+%%%==============================================================================
+\documentclass{article}
+\ExplSyntaxOn
+
+% Let's define the variables first
+\seq_new:N \g__mymodule_materials_dates_seq
+\prop_new:N \g__mymodule_materials_dates_prop
+
+\cs_new_protected:Npn \__mymodule_create_material:n #1 {
+  \keys_define:nn { mymodule / materials } {
+    #1 .code:n = {
+      \seq_gput_right:Nn \g__mymodule_materials_dates_seq { #1 }
+      \prop_put:Nnn \g__mymodule_materials_dates_prop {#1}{##1}
+    }
+  }
+}
+
+\NewDocumentCommand \creatematerial { m } {
+  \__mymodule_create_material:n { #1 }
+}
+
+\cs_new_protected:Npn \__mymodule_employee:nnn #1 #2 #3 {
+  \seq_gclear:N \g__mymodule_materials_dates_seq
+  \keys_set:nn { mymodule/materials } { #3 }
+  \seq_sort:Nn \g__mymodule_materials_dates_seq
+  {
+    \str_compare:nNnTF { ##1 } > { ##2 }
+    { \sort_return_swapped: }
+    { \sort_return_same: }
+  }
+
+  \begin{description}
+  \item[#2~ #1:]\leavevmode
+    \begin{description}
+      \seq_map_inline:Nn \g__mymodule_materials_dates_seq {
+        \item[ \text_titlecase_first:n{ ##1 } :]
+        \prop_item:Nn \g__mymodule_materials_dates_prop {##1}
+      }
+    \end{description}
+  \end{description}
+}
+
+\NewDocumentCommand \employee { m m m } {
+  \__mymodule_employee:nnn {#1} {#2} {#3}
+}
+
+\ExplSyntaxOff
+
+\creatematerial{tablet}
+\creatematerial{computer}
+\creatematerial{cellular}
+\creatematerial{electric guitar}
+\creatematerial{electric piano}
+
+\begin{document}
+
+\employee{Doe}{Jane}{
+  tablet          = 2023-01-01,
+  cellular        = 2024-01-01,
+  computer        = 2025-01-21,
+}
+\employee{Doe}{John}{
+  tablet          = 2023-01-01,
+  cellular        = 2024-01-01,
+}
+\employee{Metheny}{Pat}{
+  electric guitar = 2025-01-01,
+  tablet          = 2023-01-01,
+  electric piano  = 2024-01-01,
+}
+\end{document} 

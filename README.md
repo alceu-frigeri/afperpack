@@ -1,9 +1,7 @@
 afperpack
 ==========
 
-Template for LaTeX packages ...
-
-personal package/preferences.
+Personal package/preferences.
 
 For more details,  see the documentation,
 [afperpack.pdf](http://mirrors.ctan.org/macros/latex/contrib/afperpack/doc/afperpack.pdf)
