@@ -67,7 +67,7 @@ The Current Maintainer of this work is Alceu Frigeri
 
 * Version 1.0a (this)
     - correcting a few typos in documentation (including #1) and (argh) .sty file
-    - added a (forgot) optional parameter to \cab (see documentation).
+    - added a (forgotten) optional parameter to \cab (see documentation).
 
 * Version 1.0 
     - Initial setup.
