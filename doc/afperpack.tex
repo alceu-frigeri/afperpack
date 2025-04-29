@@ -20,7 +20,7 @@
 %%
 %% The Current Maintainer of this work is Alceu Frigeri
 %%
-%% This is version {1.0} {2025/04/25}
+%% This is version {1.0a} {2025/04/29}
 %%
 %% The list of files that compose this work can be found in the README.md file at
 %% https://ctan.org/pkg/afperpack
@@ -59,13 +59,13 @@ This is what is left from ``my personal packages''. I started, a few years ago (
 
 \begin{describelist}{key}
   \describe{showframe}{For geometry/format ``debugging''. This will just load the \tsobj[pkg]{showframe} package.}
-  \describe{showlabels}{For geometry/format ``debugging''. This will just load the \tsobj[pkg]{showlabels} package.}
+  \describe{showlabels}{For labels placement/location ``debugging''. This will just load the \tsobj[pkg]{showlabels} package.}
   \describe{english}{Babel will be loaded with \tsobj[option]{english} option. Otherwise \tsobj[option]{brazilian}. }
   \describe{beamer}{This will suppress the loading of the \tsobj[pkg]{geometry,titlesec,listings} packages. It doesn't loads \tsobj[pkg]{beamer}.}
   \describe{xpacks}{The packages \tsobj[pkg]{longtable,xpacks,csquotes,caption,supcaption,url,multirow,bigdelim} will be loaded.}
   \describe{times}{This will load the \tsobj[pkg]{mathptmx} package (times roman) instead of (default) \tsobj[pkg]{lmodern}.}
   \describe{noquests}{This will suppress the loading of the \tsobj[pkg]{tikzquests} package.}
-  \describe{tikz}{This will load \tsobj[pkg]{tikz,circuitikz,tikzquads,tikzdotncross,tikzfxgraph} packages.}
+  \describe{tikz}{This will load \tsobj[pkg]{tikz,circuitikz,tikzquads,tikzdotncross,pgfplots,tikzfxgraph} packages.}
   \describe{graphicx}{This will load the \tsobj[pkg]{graphicx} package.}
   \describe{math}{This will load the \tsobj[pkg]{
   amsmath , amsfonts , amssymb , amsthm , mathrsfs , mathtools, empheq , extarrows, steinmetz, mathfixs , siunitx , cases } packages.}
@@ -79,9 +79,9 @@ Note that \tsobj[pkg]{etoolbox,fontenc,inputenc,xcolors,enumerate} will always b
 
 \begin{codedescribe}{\cab}
 \begin{codesyntax}%
-\tsmacro{\cab}{options}
+\tsmacro{\cab}{options}\tsargs[oarg]{extra}
 \end{codesyntax}
-This will typesets, in a new page, a typical exam header. \tsobj[marg]{options} is a key=val list of:
+This will typesets, in a new page, a typical exam header. \tsobj[oarg]{extra} will be (if present) typeset as is, in a box below the main cab. \tsobj[marg]{options} is a key=val list of:
 \begin{describelist*}{key}
   \describe{uni}{University's name. (default: Universidade Federal do Rio Grande do Sul)}
   \describe{dept}{Department's name. (default: Escola de Engenharia / DELAE)}
@@ -89,12 +89,14 @@ This will typesets, in a new page, a typical exam header. \tsobj[marg]{options} 
   \describe{classcode}{Class' code. (default: ENGcode)}
   \describe{exam}{Exam text. (default: Verificação de Aproveitamento)}
   \describe{sem}{Semester. (default: 202x/Y)}
+  \describe{semester}{alias to \tsobj[key]{sem}.}
   \describe{name label}{Student`s label. (default: Nome)}
   \describe{id label}{Student`s ID label. (default: Cartão)}
   \describe{duo label}{Duo labe. (default: Dupla)}
-  \describe{simplegrad}{If true, the grad option box will be used, with a preset text. (default: false)}
-  \describe{duo}{If true then duo label will be added to identification line (default: false)}
+  \describe{duo}{If true, a duo label will be added to the identification lines (default: false)}
   \describe{nonames}{If true, the identification lines will be suppressed.}
+  \describe{simplegrad}{If true, the grad option box will be used, with a preset text. (default: false)}
+  \describe{simplegrad text}{Changes the default text of a simplegrad box.}
 \end{describelist*}
 \end{codedescribe}
 

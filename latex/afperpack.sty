@@ -12,7 +12,7 @@
 %%
 %% The Current Maintainer of this work is Alceu Frigeri
 %%
-%% This is version {1.0} {2025/04/25}
+%% This is version {1.0a} {2025/04/29}
 %%
 %% The list of files that compose this work can be found in the README.md file at
 %% https://ctan.org/pkg/afperpack
@@ -22,8 +22,8 @@
 
 \ProvidesExplPackage
     {afperpack}
-    {2025/04/25}
-    {1.0}
+    {2025/04/29}
+    {1.0a}
     {afperpack personal package/preferences.}
 
 %%%%%%%
@@ -36,8 +36,8 @@
   {
      name        .code:n = {afperpack} ,
      prefix      .code:n = {afperpack} ,
-     date        .code:n = {2025/04/25},
-     version     .code:n = {1.0} ,
+     date        .code:n = {2025/04/29},
+     version     .code:n = {1.0a} ,
      description .code:n = {afperpack personal package/preferences.}
   }
 \cs_if_exist:NF \PkgInfo 
@@ -210,10 +210,13 @@
   \usetikzlibrary{arrows,shapes}
   \usetikzlibrary{shapes.geometric} %needed for the triangle
   \usetikzlibrary{shapes.misc} %needed for the triangle
+	\usetikzlibrary{shapes.multipart}  
   \usetikzlibrary{graphs,3d}
   \usetikzlibrary{datavisualization,datavisualization.formats.functions}
   \usetikzlibrary[commutative-diagrams]  %% oriented graphs.
-  
+  \usetikzlibrary{positioning}%
+  \usetikzlibrary{shadows}%
+
   %
   % For the brave and unaware...
   %
@@ -284,6 +287,10 @@
     sem .tl_set:N = \l__afperpack_sem_tl ,
     sem .default:n         = {202x / y} ,
     
+    semester .usage:n = general ,
+    semester .tl_set:N = \l__afperpack_sem_tl ,
+    semester .default:n         = {202x / y} ,
+
     name~ label .usage:n = general ,
     name~ label .tl_set:N = \l__afperpack_name_label_tl ,
     name~ label .default:n         = {Nome} ,
@@ -298,6 +305,17 @@
 
     simplegrad .usage:n = general ,
     simplegrad .bool_set:N = \l__afperpack_simplegrad_bool ,
+    
+    simplegrad~ text .usage:n = general ,
+    simplegrad~ text .tl_set:N = \l__afperpack_simplegrad_tl ,
+    simplegrad~ text .default:n = 
+      {
+        Assinalar~ um~ “\textbf{X}”,~ no~ tipo~ de~ correção~ a~ ser~ realizada.
+  			  \begin{description}
+   	        \item[(~\ )~ Simplificada]~	Será~ atribuída~ uma~ nota~ igual~ a~ $3$~ –--~ independente~ do~ que~ estiver~ escrito~ na~ prova.
+   	        \item[(~\ )~ Completa]~	Todas~ as~ questões~ serão~ corrigidas~ e~ a~ nota~ será~ dada~ pela~ soma~ dos~ pontos~ obtidos~ em~ cada~ questão.~ Neste~ caso,~ a~ nota~ estará~ no~ intervalo~ $[0;10]$.
+          \end{description}
+      } ,
 
     duo .usage:n = general ,
     duo .bool_set:N = \l__afperpack_duo_bool ,
@@ -310,28 +328,32 @@
       {
         uni , dept , class , classcode , exam , sem , 
         duo~ label, id~ label , name~ label , 
-        simplegrad = false , duo = false , nonames = false 
+        simplegrad~ text ,
+        simplegrad = false , duo = false , nonames = false ,
       } ,
     default .value_forbidden:n = true ,
   }
 
 
-\cs_new_protected:Npn \__afperpack_simplecab:
+\cs_new_protected:Npn \__afperpack_fbox:n #1
   {
     \fbox{
       \footnotesize
   	  \begin{minipage}{.6\textwidth}
-        Assinalar~ um~ “\textbf{X}”,~ no~ tipo~ de~ correção~ a~ ser~ realizada.
-  			  \begin{description}
-   	        \item[(~\ )~ Simplificada]~	Será~ atribuída~ uma~ nota~ igual~ a~ $3$~ –--~ independente~ do~ que~ estiver~ escrito~ na~ prova.
-   	        \item[(~\ )~ Completa]~	Todas~ as~ questões~ serão~ corrigidas~ e~ a~ nota~ será~ dada~ pela~ soma~ dos~ pontos~ obtidos~ em~ cada~ questão.~ Neste~ caso,~ a~ nota~ estará~ no~ intervalo~ $[0;10]$.
-          \end{description}
+        #1
       \end{minipage}
   	}\\[3ex]
   }
 
 
-\NewDocumentCommand{\cab}{m}
+\cs_new_protected:Npn \__afperpack_simplecab:
+  {
+    \__afperpack_fbox:n
+      { \l__afperpack_simplegrad_tl }
+  }
+
+
+\NewDocumentCommand{\cab}{mO{}}
   {
     \keys_set:nn{afperpack / cab}{default , #1}
     \bool_lazy_or:nnTF {\tl_if_blank_p:V \l__afperpack_code_tl}{\tl_if_empty_p:V \l__afperpack_class_tl}
@@ -367,6 +389,11 @@
         \l__afperpack_duo_label_tl :\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\vspace{10mm}
         \l__afperpack_id_label_tl :\ldots\ldots\ldots\ldots\ldots\ldots
       }
+    \tl_if_blank:nF {#2}
+      {
+        \\[-3ex]
+        \__afperpack_fbox:n {#2}
+      } 
     \end{center}
   }
   
