@@ -28,7 +28,7 @@
 %%%==============================================================================
 \documentclass[10pt]{article}
 \RequirePackage[verbose,a4paper,marginparwidth=27.5mm,top=2.5cm,bottom=1.5cm,hmargin={40mm,20mm},marginparsep=2.5mm,columnsep=10mm,asymmetric]{geometry}
-\usepackage{codedescribe}
+\usepackage[infograb]{codedescribe}
 \RequirePackage[inline]{enumitem}
 \SetEnumitemKey{miditemsep}{parsep=0ex,itemsep=0.4ex}
 
@@ -70,9 +70,10 @@ This is what is left from ``my personal packages''. I started, a few years ago (
   \describe{math}{This will load the \tsobj[pkg]{
   amsmath , amsfonts , amssymb , amsthm , mathrsfs , mathtools, empheq , extarrows, steinmetz, mathfixs , siunitx , cases } packages.}
   \describe{listings}{This will load the \tsobj[pkg]{listings} package. (if \tsobj[option]{beamer} is false)}
+  \describe{landscape}{Sets geometry for a landscape document}
 \end{describelist}
 
-Note that \tsobj[pkg]{etoolbox,fontenc,inputenc,xcolors,enumerate} will always be loaded. Besides those \tsobj[pkg]{geometry} will (if not already) as well \tsobj[pkg]{titlesec,listings} if \tsobj[option]{beamer} is false.
+Note that \tsobj[pkg]{etoolbox,fontenc,inputenc,xcolors,enumitem} will always be loaded. Besides those \tsobj[pkg]{geometry} will (if not already) as well \tsobj[pkg]{titlesec,listings} if \tsobj[option]{beamer} is false.
 
 \section{Commands}
 

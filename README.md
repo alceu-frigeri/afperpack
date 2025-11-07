@@ -64,6 +64,9 @@ The Current Maintainer of this work is Alceu Frigeri
 -------------
 
 ## Change log
+* Version 1.0b (next)
+    - switching over pkginfograb package's info
+    - adding a package option: landscape.
 
 * Version 1.0a (this)
     - correcting a few typos in documentation (including #1) and (argh) .sty file
