@@ -64,11 +64,11 @@ The Current Maintainer of this work is Alceu Frigeri
 -------------
 
 ## Change log
-* Version 1.0b (next)
+* Version 1.0b (this)
     - switching over pkginfograb package's info
-    - adding a package option: landscape.
+    - adding package options: landscape/quests/fxgraph/dotncross
 
-* Version 1.0a (this)
+* Version 1.0a
     - correcting a few typos in documentation (including #1) and (argh) .sty file
     - added a (forgotten) optional parameter to \cab (see documentation).
 

@@ -20,7 +20,7 @@
 %%
 %% The Current Maintainer of this work is Alceu Frigeri
 %%
-%% This is version {1.0a} {2025/04/29}
+%% This is version {1.0b} {2025/11/15}
 %%
 %% The list of files that compose this work can be found in the README.md file at
 %% https://ctan.org/pkg/afperpack
@@ -65,12 +65,15 @@ This is what is left from ``my personal packages''. I started, a few years ago (
   \describe{xpacks}{The packages \tsobj[pkg]{longtable,xpacks,csquotes,caption,supcaption,url,multirow,bigdelim} will be loaded.}
   \describe{times}{This will load the \tsobj[pkg]{mathptmx} package (times roman) instead of (default) \tsobj[pkg]{lmodern}.}
   \describe{noquests}{This will suppress the loading of the \tsobj[pkg]{tikzquests} package.}
-  \describe{tikz}{This will load \tsobj[pkg]{tikz,circuitikz,tikzquads,tikzdotncross,pgfplots,tikzfxgraph} packages.}
+  \describe{tikz}{This will load \tsobj[pkg]{tikz,circuitikz,tikzquads,tikzdotncross,pgfplots,tikzfxgraph} packages (and \tsobj[pkg]{tikzquests}, if not suppressed).}
   \describe{graphicx}{This will load the \tsobj[pkg]{graphicx} package.}
   \describe{math}{This will load the \tsobj[pkg]{
   amsmath , amsfonts , amssymb , amsthm , mathrsfs , mathtools, empheq , extarrows, steinmetz, mathfixs , siunitx , cases } packages.}
   \describe{listings}{This will load the \tsobj[pkg]{listings} package. (if \tsobj[option]{beamer} is false)}
   \describe{landscape}{Sets geometry for a landscape document}
+  \describe{fxgraph}{(defaults to nothing) Options passed along to \tsobj[pkg]{tikzfxgraph} package, e.g. \tsobj[option]{fxgraph=\{use file\}}.}
+  \describe{quests}{(defaults to nothing) Options passed along to \tsobj[pkg]{tikzquests} package, e.g. \tsobj[option]{quests=\{xtrakeys=\{D\}\}}.}
+  \describe{dotncross}{(defaults to nothing) Options passed along to \tsobj[pkg]{tikzdotncross} package, e.g. \tsobj[option]{dotncross=\{coordcolor=\{blue\}\}}.}
 \end{describelist}
 
 Note that \tsobj[pkg]{etoolbox,fontenc,inputenc,xcolors,enumitem} will always be loaded. Besides those \tsobj[pkg]{geometry} will (if not already) as well \tsobj[pkg]{titlesec,listings} if \tsobj[option]{beamer} is false.
@@ -117,9 +120,11 @@ For example:
   This command is defined if, and only if, the \tsobj[option]{tikz} option is used. It will process \tsobj[marg]{math-expr} with \tsobj{\pgfmathparse} whilst the \tsobj[key]{/pgf/fpu} key is active, which greatly extends the \TeX\ number's range. See the \tsobj[pkg]{fpu} library from \tsobj[pkg]{tikz} for more details.
 \end{codedescribe}
 
-%\section{Other Packages}
-%This bundle includes a few companion ``packages'' : \tsobj[pkg]{CircMisc,CircTheoryI,CircTheoryII,ElectronicI}. Each of these defines sets of circuit-quests (based on \tsobj[pkg]{tikzquests,circuitikz}). It's possible to list all defined circuit-quests using the \tsobj{\QuestionsList} command.
 %
-
+%\newpage
+%\PkgInfoMapOver
+%  {
+%   \PkgInfoDescription{#1}
+%  }
 
 \end{document} 

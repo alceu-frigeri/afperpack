@@ -12,7 +12,7 @@
 %%
 %% The Current Maintainer of this work is Alceu Frigeri
 %%
-%% This is version {1.0a} {2025/04/29}
+%% This is version {1.0b} {2025/11/15}
 %%
 %% The list of files that compose this work can be found in the README.md file at
 %% https://ctan.org/pkg/afperpack
@@ -22,8 +22,8 @@
 
 \ProvidesExplPackage
     {afperpack}
-    {2025/04/29}
-    {1.0a}
+    {2025/11/15}
+    {1.0b}
     {afperpack personal package/preferences.}
 
 %%%%%%%
@@ -37,8 +37,8 @@
   {
      name        = {afperpack} ,
      prefix      = {afperpack} ,
-     date        = {2025/04/29},
-     version     = {1.0a} ,
+     date        = {2025/11/15},
+     version     = {1.0b} ,
      description = {afperpack~ personal~ package/preferences.}
   }
 %%%%%%%
@@ -72,6 +72,15 @@
     
     noquests .usage:n = load ,
     noquests .bool_set:N = \l__afperpack_noquests_bool ,
+    
+    quests .usage:n = general ,
+    quests .tl_set:N = \l__afperpack_quests_tl ,
+    
+    fxgraph .usage:n = general ,
+    fxgraph .tl_set:N = \l__afperpack_fxgraph_tl ,
+    
+    dotncross .usage:n = general ,
+    dotncross .tl_set:N = \l__afperpack_dotncross_tl ,
     
     tikz .usage:n = load ,
     tikz  .bool_set:N = \l__afperpack_tikz_bool ,
@@ -254,17 +263,24 @@
     %
     % My standard circuitikz setup
     %
+    \tl_if_empty:NF \l__afperpack_dotncross_tl
+      { \PassOptionsToPackage{\l__afperpack_dotncross_tl}{tikzdotncross} }
     \RequirePackage{tikzdotncross}
-    \bool_if:nF {\l__afperpack_noquests_bool}
-      {
-        \@ifpackageloaded{tikzquests}{}{\RequirePackage[xtrakeys={D}]{tikzquests}}
-      }
     \RequirePackage{tikzquads}
     
+    \bool_if:nF {\l__afperpack_noquests_bool}
+      {
+        \tl_if_empty:NF \l__afperpack_quests_tl
+          { \PassOptionsToPackage{\l__afperpack_quests_tl}{tikzquests} }
+        \RequirePackage{tikzquests}
+      }
+
     %
     % To draw graphs...
     %
-    \RequirePackage{tikzfxgraph}
+    \tl_if_empty:NF \l__afperpack_fxgraph_tl
+      { \PassOptionsToPackage{\l__afperpack_fxgraph_tl}{tikzfxgraph} }
+    \RequirePackage[no~ domain~ warning]{tikzfxgraph}   
   }
 
 
